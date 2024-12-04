@@ -1,16 +1,11 @@
-// Express
 import express from 'express'
-// App
+import usuarioRoutes from './routes/usuarioRoutes.js'
 const app = express()
+
 // Routing
-app.get('/', function(req, res) {
-	res.send('Hola Mundo en Express')
-})
+app.use('/', usuarioRoutes)
 
-app.get('/nosotros', function(req, res) {
-	res.json({msg: 'Hola Mundo'})
-})
-
+// Puerto y Servidor
 const port = 3000;
 app.listen(port, () => {
 
