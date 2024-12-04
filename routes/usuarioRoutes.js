@@ -1,16 +1,22 @@
 import express from "express"
-
+import {formularioLogin} from "../controllers/usuarioController.js"
 const router = express.Router()
 
-// Routing
+// Index
 router.route('/')
 	.get((req, res) => res.send('Hola Mundo desde Express'))
 	.post((req, res) => res.json({msg: 'Método Post'}))
 
+// Logion
+router.get('/login', formularioLogin)
 
-router.get('/login', (req, res) => {
-	res.render('auth/login', {
-		autenticado: false
-	})
-})
+
+
+
+
+// Export
 export default router
+
+
+
+
