@@ -3,7 +3,13 @@ const formularioLogin = (req, res) => {
 		autenticado: false
 	})
 }
+const formularioRegistro = (req, res) => {
+	res.render('auth/registro', {
+		titulo: 'Crea tu Cuenta'
+	})
+}
 
 export {
-	formularioLogin
+	formularioLogin,
+	formularioRegistro
 }
