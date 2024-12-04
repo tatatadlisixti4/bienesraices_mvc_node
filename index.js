@@ -6,11 +6,14 @@ const app = express()
 app.set('view engine', 'pug')
 app.set('views', './views')
 
+// Carpeta pública
+app.use(express.static('public'))
+
 
 // Routing
 app.use('/auth', usuarioRoutes)
 
-// Puerto y Servidor
+// Puerto y servidor
 const port = 3000;
 app.listen(port, () => {
 
