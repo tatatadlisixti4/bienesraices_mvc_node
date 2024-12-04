@@ -9,8 +9,14 @@ const formularioRegistro = (req, res) => {
 		titulo: 'Crea Cuenta'
 	})
 }
+const formularioOlvidePassword = (req, res) => {
+	res.render('auth/olvide-password', {
+		titulo: 'Recupera tu acceso a Bienes Raíces'
+	})
+}
 
 export {
 	formularioLogin,
-	formularioRegistro
+	formularioRegistro,
+	formularioOlvidePassword
 }
