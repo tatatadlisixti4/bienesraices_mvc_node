@@ -1,11 +1,12 @@
 const formularioLogin = (req, res) => {
 	res.render('auth/login', {
-		autenticado: false
+		autenticado: false,
+		titulo: 'Iniciar Sesión'
 	})
 }
 const formularioRegistro = (req, res) => {
 	res.render('auth/registro', {
-		titulo: 'Crea tu Cuenta'
+		titulo: 'Crea Cuenta'
 	})
 }
 
