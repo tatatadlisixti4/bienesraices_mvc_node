@@ -1,5 +1,5 @@
 import express from "express"
-import {formularioLogin, formularioRegistro, formularioOlvidePassword} from "../controllers/usuarioController.js"
+import {formularioLogin, formularioRegistro, registrar, formularioOlvidePassword} from "../controllers/usuarioController.js"
 const router = express.Router()
 
 // Index
@@ -12,6 +12,7 @@ router.get('/login', formularioLogin)
 
 // Registro
 router.get('/registro', formularioRegistro)
+router.post('/registro', registrar)
 
 // Olvidé
 router.get('/olvide-password', formularioOlvidePassword)
