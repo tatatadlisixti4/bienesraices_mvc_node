@@ -37,6 +37,10 @@ block contenido
                             type="password"
                             name="repetir_password")
 
+                    div.flex.items-center.justify-between
+                        a.text-gray-500.text-sm(href="/auth/login") ¿Ya tienes cuenta?
+                        a.text-gray-500.text-sm(href="/auth/olvide-password") Olvidé mi Password
+
                     input(class="w-full bg-indigo-600 hover:bg-indigo-700 cursor-pointer py-3 rounded-md text-white uppercase font-bold")(
                         type="submit"
                         value="Crear Cuenta")
