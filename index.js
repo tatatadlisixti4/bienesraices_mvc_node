@@ -20,7 +20,6 @@ app.set('views', './views')
 // Carpeta pública
 app.use(express.static('public'))
 
-
 // Routing
 app.use('/auth', usuarioRoutes)
 
