@@ -1,3 +1,4 @@
+import {check, validationResult} from 'express-validator'
 import Usuario from '../models/Usuario.js'
 
 const formularioLogin = (req, res) => {
@@ -13,9 +14,17 @@ const formularioRegistro = (req, res) => {
 }
 
 const registrar = async (req, res) => {
+	// Validación
+	await check('nombre') 
+		.notEmpty()
+		.withMessage('El nombre no puede ir vacío')
+		.run(req)
+	let resultado = validationResult(req) 
+	res.json(resultado.array())
+
+	// Inserción registro
 	const usuario = await Usuario.create(req.body)
 	res.json(usuario)
-	
 }
 const formularioOlvidePassword = (req, res) => {
 	res.render('auth/olvide-password', {
