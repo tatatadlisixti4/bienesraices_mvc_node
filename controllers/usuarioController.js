@@ -14,6 +14,8 @@ const formularioRegistro = (req, res) => {
 }
 
 const registrar = async (req, res) => {
+	console.log(req.body)
+	
 	// Validación
 	await check('nombre') 
 		.notEmpty()
@@ -31,14 +33,23 @@ const registrar = async (req, res) => {
 		.run(req)
 
 	await check('repetir_password') 
-		.equals('password')
-		.withMessage('Los Passwords no son iguales')
+		.custom((value, { req }) => {
+			if (value !== req.body.password) {
+				throw new Error('Los Passwords no son iguales');
+			}
+			return true
+		})
 		.run(req)
 
+	let resultado = validationResult(req)
+
 	//Verificar que el resultado esté vacío
-	
-	let resultado = validationResult(req) 
-	res.json(resultado.array())
+	if(!resultado.isEmpty()) {
+		return res.render('auth/registro', {
+			titulo: 'Crea Cuenta',
+			errores: resultado.array()
+		})
+	}
 
 	// Inserción registro
 	const usuario = await Usuario.create(req.body)
