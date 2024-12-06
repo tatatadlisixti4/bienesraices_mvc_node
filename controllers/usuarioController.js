@@ -57,7 +57,7 @@ const registrar = async (req, res) => {
 	}
 
 	// Verificar que el uisuario no esté duplicado
-	const existeUsuario = await Usuario.findOne({where: {email : req.body.email}})
+	const existeUsuario = await Usuario.findOne({where: {email}}) // {email: req.body.email}
 	if(existeUsuario) {
 		return res.render('auth/registro', {
 			titulo: 'Crear Cuenta',
@@ -78,7 +78,7 @@ const registrar = async (req, res) => {
 	})
 
 	// Mensaje de confirmación
-	res.render('templates/mensaje',  {
+	res.render('templates/mensaje', {
 		titulo: 'Cuenta Creada Correctamente',
 		mensaje: 'Hemos Enviado un Email con las Instrucciones'
 	})
