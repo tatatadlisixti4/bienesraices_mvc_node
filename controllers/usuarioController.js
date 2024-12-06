@@ -19,6 +19,24 @@ const registrar = async (req, res) => {
 		.notEmpty()
 		.withMessage('El nombre no puede ir vacío')
 		.run(req)
+		
+	await check('email') 
+		.isEmail()
+		.withMessage('Eso no es un email, PAYASO')
+		.run(req)
+
+	await check('password') 
+		.isLength({min: 6})
+		.withMessage('El Password debe ser de al menos 6 caracteres')
+		.run(req)
+
+	await check('repetir_password') 
+		.equals('password')
+		.withMessage('Los Passwords no son iguales')
+		.run(req)
+
+	//Verificar que el resultado esté vacío
+	
 	let resultado = validationResult(req) 
 	res.json(resultado.array())
 
