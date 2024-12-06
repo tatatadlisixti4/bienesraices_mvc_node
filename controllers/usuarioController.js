@@ -14,14 +14,12 @@ const formularioRegistro = (req, res) => {
 }
 
 const registrar = async (req, res) => {
-	console.log(req.body)
-	
 	// Validación
 	await check('nombre') 
 		.notEmpty()
 		.withMessage('El nombre no puede ir vacío')
 		.run(req)
-		
+
 	await check('email') 
 		.isEmail()
 		.withMessage('Eso no es un email, PAYASO')
@@ -40,14 +38,17 @@ const registrar = async (req, res) => {
 			return true
 		})
 		.run(req)
-
 	let resultado = validationResult(req)
 
 	//Verificar que el resultado esté vacío
 	if(!resultado.isEmpty()) {
 		return res.render('auth/registro', {
 			titulo: 'Crea Cuenta',
-			errores: resultado.array()
+			errores: resultado.array(),
+			usuario: {
+				nombre: req.body.nombre,
+				email: req.body.email
+			}
 		})
 	}
 

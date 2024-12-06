@@ -17,14 +17,16 @@ block contenido
                         input#nombre.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(
                             placeholder="Tu Nombre"
                             type="text"
-                            name="nombre")
+                            name="nombre"
+                            value= usuario ? usuario.nombre : '')
 
                     div
                         label.block.text-sm.uppercase.text-gray-600.mb-2.font-bold(for="email") Email de Registro
                         input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(
                             placeholder="Tu Email"
                             type="email"
-                            name="email")
+                            name="email"
+                            value= usuario ? usuario.email : '')
 
                     div
                         label.block.text-sm.uppercase.text-gray-600.mb-2.font-bold(for="password") Password
