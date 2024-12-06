@@ -14,6 +14,9 @@ const formularioRegistro = (req, res) => {
 }
 
 const registrar = async (req, res) => {
+	// Extracción de datos
+	const {nombre, email, password} = req.body
+
 	// Validación
 	await check('nombre') 
 		.notEmpty()
@@ -43,19 +46,34 @@ const registrar = async (req, res) => {
 	//Verificar que el resultado esté vacío
 	if(!resultado.isEmpty()) {
 		return res.render('auth/registro', {
-			titulo: 'Crea Cuenta',
+			titulo: 'Crear Cuenta',
 			errores: resultado.array(),
 			usuario: {
-				nombre: req.body.nombre,
-				email: req.body.email
+				nombre, // nombre: nombre {Object Literal Enhancement | Propiedades abreviadas}
+				email // email: email {Object Literal Enhancement | Propiedades abreviadas}
 			}
 		})
 	}
 
+	// Verificar que el uisuario no esté duplicado
+	const existeUsuario = await Usuario.findOne({where: {email : req.body.email}})
+	if(existeUsuario) {
+		return res.render('auth/registro', {
+			titulo: 'Crear Cuenta',
+			errores: [{msg: 'El Usuario ya está Registrado'}],
+			usuario: {
+				nombre,
+				email
+			}
+		})
+	}
+	
+
 	// Inserción registro
-	const usuario = await Usuario.create(req.body)
-	res.json(usuario)
+	// const usuario = await Usuario.create(req.body)
+	// res.json(usuario)
 }
+
 const formularioOlvidePassword = (req, res) => {
 	res.render('auth/olvide-password', {
 		titulo: 'Recupera tu acceso a Bienes Raíces'
