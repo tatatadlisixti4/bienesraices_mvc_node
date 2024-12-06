@@ -69,7 +69,7 @@ const registrar = async (req, res) => {
 		})
 	}
 	
-	// Inserción registro
+	// Almacenar usuario
 	await Usuario.create({
 		nombre,
 		email,
@@ -77,7 +77,11 @@ const registrar = async (req, res) => {
 		token: generarId()
 	})
 
-	//res.json(usuario)
+	// Mensaje de confirmación
+	res.render('templates/mensaje',  {
+		titulo: 'Cuenta Creada Correctamente',
+		mensaje: 'Hemos Enviado un Email con las Instrucciones'
+	})
 }
 
 const formularioOlvidePassword = (req, res) => {
