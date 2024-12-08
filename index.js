@@ -12,7 +12,6 @@ try {
     console.log('Conexión correcta a la base de datos')
 } catch(error) {
     console.log(error);
-    
 }
 
 // Habilitar template engine (Pug)
@@ -26,7 +25,7 @@ app.use(express.static('public'))
 app.use('/auth', usuarioRoutes)
 
 // Puerto y servidor
-const port = 3000;
+const port = process.env.PORT || 3000
 app.listen(port, () => {
 
 })
