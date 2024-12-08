@@ -107,7 +107,13 @@ const confirmar = async (req, res, next) => {
 	}
 	
 	// Confirmar la cuenta
-	next()
+	usuario.token = null
+	usuario.confirmado = true
+	await usuario.save()
+	res.render('auth/confirmar-cuenta', {
+		titulo: 'Cuenta Confirmada',
+		mensaje: 'La cuenta se confirmó exitosamente'
+	})
 }
 
 const formularioOlvidePassword = (req, res) => {
