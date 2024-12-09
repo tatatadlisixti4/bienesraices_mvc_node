@@ -38,7 +38,7 @@ const registrar = async (req, res) => {
 
 	await check('repetir_password') 
 		.custom((value, {req}) => {
-			if (value !== req.body.password) {
+			if (value !== password) {
 				throw new Error('Los Passwords no son iguales');
 			}
 			return true
@@ -121,8 +121,29 @@ const confirmar = async (req, res, next) => {
 
 const formularioOlvidePassword = (req, res) => {
 	res.render('auth/olvide-password', {
-		titulo: 'Recupera tu acceso a Bienes Raíces'
+		titulo: 'Recupera tu acceso a Bienes Raíces',
+		csrfToken: req.csrfToken()
 	})
+}
+
+const resetPassword = async (req, res) => {
+	// Validación
+	await check('email') 
+		.isEmail()
+		.withMessage('Eso no es un email, PAYASO')
+		.run(req)
+	let resultado = validationResult(req)
+
+	//Verificar que el resultado esté vacío
+	if(!resultado.isEmpty()) {
+		return res.render('auth/olvide-password', {
+			titulo: 'Recupera tu acceso a Bienes Raíces',
+			csrfToken: req.csrfToken(),
+			errores: resultado.array(),
+		})
+	}
+
+	// Buscar el usuario con el email
 }
 
 export {
@@ -130,5 +151,6 @@ export {
 	formularioRegistro,
 	registrar,
 	confirmar,
-	formularioOlvidePassword
+	formularioOlvidePassword,
+	resetPassword
 }

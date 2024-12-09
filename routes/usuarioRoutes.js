@@ -1,5 +1,5 @@
 import express from "express"
-import {formularioLogin, formularioRegistro, registrar, formularioOlvidePassword, confirmar} from "../controllers/usuarioController.js"
+import {formularioLogin, formularioRegistro, registrar, formularioOlvidePassword, confirmar, resetPassword} from "../controllers/usuarioController.js"
 const router = express.Router()
 
 // Index
@@ -19,6 +19,7 @@ router.get('/confirmar/:token', confirmar)
 
 // Olvidé
 router.get('/olvide-password', formularioOlvidePassword)
+router.post('/olvide-password', resetPassword)
 
 
 // Export
