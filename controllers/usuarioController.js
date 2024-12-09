@@ -139,11 +139,25 @@ const resetPassword = async (req, res) => {
 		return res.render('auth/olvide-password', {
 			titulo: 'Recupera tu acceso a Bienes Raíces',
 			csrfToken: req.csrfToken(),
-			errores: resultado.array(),
+			errores: resultado.array()
 		})
 	}
 
 	// Buscar el usuario con el email
+	const {email} = req.body
+	const usuario = await Usuario.findOne({where : {email}})
+	if(!usuario) {
+		return res.render('auth/olvide-password', {
+			titulo: 'Recupera tu acceso a Bienes Raíces',
+			csrfToken: req.csrfToken(),
+			errores: [{msg: 'El email ingresado no es valido'}]
+		})
+	}
+
+	// Generar el token y enviar el email
+	
+	
+
 }
 
 export {
