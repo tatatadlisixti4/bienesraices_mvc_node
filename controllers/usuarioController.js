@@ -11,7 +11,8 @@ const formularioLogin = (req, res) => {
 }
 const formularioRegistro = (req, res) => {
 	res.render('auth/registro', {
-		titulo: 'Crea Cuenta'
+		titulo: 'Crea Cuenta',
+		csrfToken: req.csrfToken()
 	})
 }
 
@@ -36,7 +37,7 @@ const registrar = async (req, res) => {
 		.run(req)
 
 	await check('repetir_password') 
-		.custom((value, { req }) => {
+		.custom((value, {req}) => {
 			if (value !== req.body.password) {
 				throw new Error('Los Passwords no son iguales');
 			}
@@ -49,6 +50,7 @@ const registrar = async (req, res) => {
 	if(!resultado.isEmpty()) {
 		return res.render('auth/registro', {
 			titulo: 'Crear Cuenta',
+			csrfToken: req.csrfToken(),
 			errores: resultado.array(),
 			usuario: {
 				nombre, // nombre: nombre {Object Literal Enhancement | Propiedades abreviadas}
@@ -63,6 +65,7 @@ const registrar = async (req, res) => {
 		return res.render('auth/registro', {
 			titulo: 'Crear Cuenta',
 			errores: [{msg: 'El Usuario ya está Registrado'}],
+			csrfToken: req.csrfToken(),
 			usuario: {
 				nombre,
 				email
