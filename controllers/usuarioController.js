@@ -67,7 +67,11 @@ const autenticar = async (req, res) => {
 		id: usuario.id, 
 		nombre: usuario.nombre
 	})
-	console.log(token)
+	
+	// Almacenar en un cookie
+	return res.cookie('_token', token, {
+		httpOnly: true
+	}).redirect('/mis-propiedades')
 }
 
 const formularioRegistro = (req, res) => {
