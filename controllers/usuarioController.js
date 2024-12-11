@@ -1,8 +1,7 @@
 import {check, validationResult} from 'express-validator'
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 import Usuario from '../models/Usuario.js'
-import {generarId} from '../helpers/tokens.js'
+import {generarJWT, generarId} from '../helpers/tokens.js'
 import {emailRegistro, emailOlvidePass} from '../helpers/emails.js'
 
 const formularioLogin = (req, res) => {
@@ -56,7 +55,7 @@ const autenticar = async (req, res) => {
 
 	// Revisar el password
 	if(!usuario.verificarPassword(password)) {
-				return res.render('auth/login', {
+		return res.render('auth/login', {
 			titulo: 'Iniciar Sesión',
 			csrfToken: req.csrfToken(),
 			errores: [{msg: 'El password es incorrecto'}]
@@ -64,15 +63,11 @@ const autenticar = async (req, res) => {
 	}
 
 	// Autenticar al usuario
-	const token = jwt.sign({
-		nombre: 'Thadli',
-		empresa: 'GeniusInc',
-		tecnologias: 'Node.js'
-	}, "palabrasecreta", {
-		expiresIn: '1d'
+	const token = generarJWT({
+		id: usuario.id, 
+		nombre: usuario.nombre
 	})
 	console.log(token)
-	
 }
 
 const formularioRegistro = (req, res) => {
