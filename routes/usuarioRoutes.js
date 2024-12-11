@@ -8,11 +8,6 @@ import {
 
 const router = express.Router()
 
-// Index
-router.route('/')
-	.get((req, res) => res.send('Hola Mundo desde Express'))
-	.post((req, res) => res.json({msg: 'Método Post'}))
-
 // Login
 router.get('/login', formularioLogin)
 router.post('/login', autenticar)
