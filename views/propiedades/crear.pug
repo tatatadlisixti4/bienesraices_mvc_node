@@ -27,6 +27,32 @@ block contenido
                             label.block.text-sm.uppercase.text-gray-600.mb-2.font-bold(for="precio") Precio
                             select#precio.w-full.px-3.py-2.border.border-gray-300.rounded-md(name="precio")
                                 option(value="") - Seleccione -
+                                
+
+                    div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
+                        div(class="md:w-1/3")
+                            label.block.text-sm.uppercase.text-gray-600.mb-2.font-bold(for="habitaciones") Habitaciones
+                            select#habitaciones.w-full.px-3.py-2.border.border-gray-300.rounded-md(name="habitaciones")
+                                option(value="") - Seleccione -
+                                - let n1 = 1
+                                    while n1 < 10
+                                        option(value=n1) #{n1++}
+
+                        div(class="md:w-1/3")
+                            label.block.text-sm.uppercase.text-gray-600.mb-2.font-bold(for="estacionamiento") Estacionamiento
+                            select#estacionamiento.w-full.px-3.py-2.border.border-gray-300.r2ounded-md(name="estacionamiento")
+                                option(value="") - Seleccione -
+                                - let n2 = 1
+                                    while n2 < 4
+                                        option(value=n2) #{n2++}
+
+                        div(class="md:w-1/3")
+                            label.block.text-sm.uppercase.text-gray-600.mb-2.font-bold(for="wc") WC
+                            select#wc.w-full.px-3.py-2.border.border-gray-300.rounded-md(name="wc")
+                                option(value="") - Seleccione -
+                                - let n3 = 1
+                                    while n3 < 5
+                                        option(value=n3) #{n3++}
 
 
 
