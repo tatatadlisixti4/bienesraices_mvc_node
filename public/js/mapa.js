@@ -16,7 +16,7 @@
   \************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n(function() {\n    const lat = 40.4530822\n    const lng = -3.6903137\n    const mapa = L.map('mapa').setView([lat, lng ], 17)\n    \n\n    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {\n        attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n    }).addTo(mapa)\n\n\n})()\n\n//# sourceURL=webpack://bienesraicses_mvc_node/./src/js/mapa.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n(function() {\n    // L es lo que contiene toda la información de leaflet\n    const lat = 40.4530822\n    const lng = -3.6903137\n    const mapa = L.map('mapa').setView([lat, lng ], 17)\n    let marke\n\n    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {\n        attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n    }).addTo(mapa)\n\n    // Pin\n    marker = new L.marker([lat, lng], {\n        draggable: true, // Se puede mover el pin\n        autoPan: true // Una vez movido el pin, se vuelve a centrar el mapa\n    })\n    .addTo(mapa)\n\n\n})()\n\n//# sourceURL=webpack://bienesraicses_mvc_node/./src/js/mapa.js?");
 
 /***/ })
 
