@@ -15,7 +15,7 @@ app.use(cookieParser())
 // Habilitar CSRF
 app.use(csrf({cookie: true}))
 
-// Conexión a la base de datos
+// Conexión y sincronización con la base de datos
 try {
     await db.authenticate()
     db.sync()
