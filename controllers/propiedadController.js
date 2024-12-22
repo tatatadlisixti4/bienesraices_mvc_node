@@ -39,6 +39,7 @@ const guardar = async (req, res) => {
         res.render('propiedades/crear', {
             titulo: 'Crear Propiedad',
             barra: true,
+            csrfToken: req.csrfToken(), // ??
             categorias,
             precios,
             errores: resultado.array()
