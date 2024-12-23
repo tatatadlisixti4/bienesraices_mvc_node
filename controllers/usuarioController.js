@@ -124,7 +124,7 @@ const registrar = async (req, res) => {
 		})
 	}
 
-	// Verificar que el uisuario no esté duplicado
+	// Verificar que el usuario no esté duplicado
 	const existeUsuario = await Usuario.findOne({where: {email}}) // {email: req.body.email}
 	if(existeUsuario) {
 		return res.render('auth/registro', {
