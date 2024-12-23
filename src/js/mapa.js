@@ -1,7 +1,7 @@
 (function() {
     // Constantes y variable
-    const lat = 40.4530822
-    const lng = -3.6903137
+    const lat = document.querySelector('#lat').value || 40.4530822
+    const lng = document.querySelector('#lng').value || -3.6903137
     const mapa = L.map('mapa').setView([lat, lng ], 17)  // L es lo que contiene toda la información de Leaflet
     let marker
 
