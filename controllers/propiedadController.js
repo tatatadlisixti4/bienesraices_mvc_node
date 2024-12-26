@@ -2,8 +2,7 @@ import {validationResult} from 'express-validator'
 import {Precio, Categoria, Propiedad} from '../models/index.js'
 const admin = (req, res) => {
     res.render('propiedades/admin', {
-        titulo: 'Mis Propiedades',
-        barra: true
+        titulo: 'Mis Propiedades'
     })
 }
 
@@ -17,7 +16,6 @@ const crear = async (req, res) => {
 
     res.render('propiedades/crear', {
         titulo: 'Crear Propiedad',
-        barra: true,
         csrfToken: req.csrfToken(), 
         categorias,
         precios,
@@ -37,7 +35,6 @@ const guardar = async (req, res) => {
         ])
         res.render('propiedades/crear', {
             titulo: 'Crear Propiedad',
-            barra: true,
             csrfToken: req.csrfToken(), // ??
             categorias,
             precios,
@@ -50,7 +47,6 @@ const guardar = async (req, res) => {
     const {titulo, descripcion, habitaciones, estacionamiento, wc, calle, lat, lng, precio: precioId, categoria: categoriaId} = req.body
     
     const {id: usuarioId} = req.usuario
-
     try {
         const propiedadGuardada = await Propiedad.create({
             titulo,
@@ -66,16 +62,22 @@ const guardar = async (req, res) => {
             usuarioId,
             imagen: ''
         })
-
         const {id} = propiedadGuardada
-        res.redirect(`/propiedad/agregar-imagen/${id}`)
+        res.redirect(`/propiedades/agregar-imagen/${id}`)
     } catch(error) {
         console.log(error)
-    }
+    }   
+}
+
+const agregarImagen = async(req, res) => {
+    res.render('propiedades/agregar-imagen',  {
+        titulo: 'Agregar Imagen'
+    })
 }
 
 export {
     admin,
     crear,
-    guardar
+    guardar,
+    agregarImagen
 }
