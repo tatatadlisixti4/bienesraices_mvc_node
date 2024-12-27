@@ -26,7 +26,7 @@ eval("(function webpackUniversalModuleDefinition(root, factory) {\n\tif(true)\n\
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ \"./node_modules/dropzone/dist/dropzone.js\");\n\n\n\n//# sourceURL=webpack://bienesraicses_mvc_node/./src/js/agregarImagen.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ \"./node_modules/dropzone/dist/dropzone.js\");\n\n\ndropzone__WEBPACK_IMPORTED_MODULE_0__.Dropzone.options.imagen = {\n    dictDefaultMessage: 'Sube tus imágenes aquí',\n    acceptedFiles: '.png, .jpg, .jpeg',\n    maxFilesize: 5,\n    maxFiles: 1,\n    paralleUploads: 1,\n    autoProcessQueue: false, // Deshabilita la opción por defecto. Esta enviaba la foto una vez la dropeaba en la zona, ahora espera al submit del botón. \n    addRemoveLinks: true,\n    dictRemoveFile: 'Borrar Archivo',\n    dictMaxFilesExceeded: 'El límite es un archivo'\n}\n\n//# sourceURL=webpack://bienesraicses_mvc_node/./src/js/agregarImagen.js?");
 
 /***/ })
 
